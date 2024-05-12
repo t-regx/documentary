@@ -66,7 +66,8 @@ readonly class PhpDocumentor
 
     private function run(array $shellArguments): void
     {
-        $process = new Process($this->working->path, $this->shell($shellArguments));
+        $shellCommand = $this->shell($shellArguments);
+        $process = new Process($this->working->path, $shellCommand);
         if ($process->returnCode !== 0) {
             throw new \RuntimeException("Failed to generate phpDocumentor structure.xml.\n\n$process->stdOutput\n\n$process->stdError");
         }
